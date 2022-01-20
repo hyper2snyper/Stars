@@ -2,50 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TypeDictionary : MonoBehaviour
+public class TypeDictionary : ScriptableObject
 {
-	public Tile wall;
-    public Tile floor;
 
-    Dictionary<Tiles, Tile> tiles;
+    public Tile[] tiles;
+    public Mob[] mobs;
 
-    public Mob human;
-
-    Dictionary<Mobs, Mob> mobs;
-
-    public void generate()
+    public Tile getTile(int key)
     {
-        tiles = new Dictionary<Tiles, Tile>();
-        tiles.Add(Tiles.Wall, wall);
-        tiles.Add(Tiles.Floor, floor);
-
-        mobs = new Dictionary<Mobs, Mob>();
-        mobs.Add(Mobs.Human, human);
-    }
-
-
-    public Tile getTile(Tiles name)
-    {
-        if(tiles.ContainsKey(name))
-            return tiles[name];
-        Debug.LogError($"Tile with {name} could not be found.");
+        if(key <= tiles.key)
+            return tiles[key];
+        Debug.LogError($"Tile with key: {key} could not be found.");
         return null;
     } 
 
-    public Mob getMob(Mobs name)
+    public Mob getMob(int key)
     {
-        if(mobs.ContainsKey(name))
-            return mobs[name];
-        Debug.LogError($"Mob with {name} could not be found.");
+        if(key <= mobs.len)
+            return mobs[key];
+        Debug.LogError($"Mob with key: {key} could not be found.");
         return null;
     } 
 }
 
-public enum Tiles{
-    Wall,
-    Floor,
+public enum Tiles : int
+{
+    wall = 0,
+    floor,
 }
 
-public enum Mobs{
-    Human,
+public enum Mobs : int
+{
+    human = 0,
 }

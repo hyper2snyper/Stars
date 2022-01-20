@@ -12,8 +12,6 @@ public class GameHandler : MonoBehaviour
     void Start()
     {
         tiles = Instantiate(tiles);
-        types = Instantiate(types);
-        types.generate();
         tiles.create_world(types, player);
     }
 
