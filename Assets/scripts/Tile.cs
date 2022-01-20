@@ -10,13 +10,19 @@ public class Tile : MonoBehaviour
 
     public List<object> contents;
 
-    public void set_up(int x_loc, int y_loc, float sprite_distance, Transform parent)
+}
+
+public static class Tile_Creator
+{
+    public Tile Spawn(Tile type, int x_loc, int y_loc, float sprite_distance, Transform parent)
     {
-        x = x_loc;
-        y = y_loc;
-        GetComponent<Transform>().parent = parent;
-        GetComponent<Transform>().position = new Vector3(x/sprite_distance, y/sprite_distance, (int) Layers.Tile_layer);
-        name = $"{object_name} ({x}, {y})";
-        contents = new List<object>();
+        Tile tile = Tile.Instantiate(type);
+        tile.x = x_loc;
+        tile.y = y_loc;
+        tile.GetComponent<Transform>().parent = parent;
+        tile.GetComponent<Transform>().position = new Vector3(tile.x/sprite_distance, tile.y/sprite_distance, (int) Layers.Tile_layer);
+        tile.name = $"{tile.object_name} ({tile.x}, {tile.y})";
+        tile.contents = new List<object>();
+        return tile;
     }
 }

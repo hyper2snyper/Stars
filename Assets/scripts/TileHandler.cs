@@ -16,7 +16,6 @@ public class TileHandler : MonoBehaviour
     public void create_world(TypeDictionary types, PlayerAi playerAi)
     {
         tiles = new Tile[world_height, world_width];
-        Mob player = Instantiate(types.getMob(Mobs.Human));
         for (int x = 0; x < world_height; x++)
         {
             for (int y = 0; y < world_height; y++)
@@ -24,14 +23,11 @@ public class TileHandler : MonoBehaviour
                 var type = types.getTile(Tiles.Floor);
                 if(x == 0 || x == world_width-1 || y == 0 || y == world_height-1) type = types.getTile(Tiles.Wall);
                 
-                Tile tile = Instantiate(type);
-                tile.set_up(x, y, sprite_distance, GetComponent<Transform>());
+                Tile tile = Tile_Creator.Spawn(type, x, y, sprite_distance, GetComponent<Transform>());
                 tiles[x , y] = tile;
-                if(x == player.start_x && y == player.start_y)
+                if(x == 5 && y == 5)
                 {
-                    player.create(tile);
-                    player.brain = playerAi;
-                    playerAi.set_up(player);
+                    Mob player = Mob_Creator.Spawn(types.getMob(Mobs.Human), tile)
                 }
             }
         }

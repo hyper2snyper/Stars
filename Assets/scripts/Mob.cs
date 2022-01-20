@@ -11,21 +11,29 @@ public class Mob : MonoBehaviour
 
     public Ai brain;
 
-    public int start_x = 5;
-    public int start_y = 5;
-
     public int x;
     public int y;
 
-    public void create(Tile location)
+}
+
+public static class Mob_Creator
+{
+    public Mob Spawn(Mob type, Tile spawn_location, Ai brain)
     {
-        loc = location;
-        x = loc.x;
-        y = loc.y;
+        Mob mob = Mob.Instantiate(type);
+        mob.loc = spawn_location;
+        Tile loc = mob.loc;
+        mob.x = loc.x;
+        mob.y = loc.y;
         Transform parent_transform = loc.GetComponent<Transform>();
-        GetComponent<Transform>().parent = parent_transform;
-        GetComponent<Transform>().position = new Vector3(parent_transform.position.x, parent_transform.position.y, (int) Layers.Mob_layer);
-        name = $"{object_name} ({loc})";
+        mob.GetComponent<Transform>().parent = parent_transform;
+        mob.GetComponent<Transform>().position = new Vector3(parent_transform.position.x, parent_transform.position.y, (int) Layers.Mob_layer);
+        mob.name = $"{mob.object_name} ({loc})";
         loc.contents.Add(this);
+
+        mob.brain = brain;
+        mob.brain?.set_up(mob);
+
+        return mob;
     }
 }
