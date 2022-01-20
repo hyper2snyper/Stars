@@ -10,6 +10,9 @@ public class TileHandler : MonoBehaviour
     public int world_height = 10;
     public int world_width = 10;
 
+    public int player_start_x = 5; //Starting position for the player.
+    public int player_start_y = 5;
+
     public float sprite_distance = 10f;
 
 
@@ -25,7 +28,7 @@ public class TileHandler : MonoBehaviour
                 
                 Tile tile = Tile_Creator.Spawn(type, x, y, sprite_distance, GetComponent<Transform>());
                 tiles[x , y] = tile;
-                if(x == 5 && y == 5)
+                if(x == player_start_x && y == player_start_y)
                 {
                     Mob player = Mob_Creator.Spawn(types.getMob(Mobs.human), tile)
                 }
