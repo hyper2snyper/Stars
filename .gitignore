@@ -1,0 +1,7 @@
+Library/
+*log
+settings.json
+project-colors.json
+VSWorkspaceState.json
+Logs/
+UserSettings/
