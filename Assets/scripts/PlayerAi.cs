@@ -11,7 +11,7 @@ public class PlayerAi : Ai
         base.set_up(new_parent);
         Vector3 parent_location = new_parent.loc.GetComponent<Transform>().position;
         player_camera.GetComponent<Transform>().position = new Vector3(parent_location.x, parent_location.y, (int) Layers.Camera_layer);
-        player_camera.GetComponent<Transform>().parent = parent.GetComponent<Transform>();
+        player_camera.GetComponent<Transform>().parent = GetComponent<Transform>();
         GetComponent<Transform>().parent = parent.GetComponent<Transform>();
     }
 

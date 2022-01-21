@@ -36,14 +36,16 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\scripts\Tile.cs" />
-     <Compile Include="Assets\scripts\TileHandler.cs" />
-     <Compile Include="Assets\scripts\GameHandler.cs" />
-     <Compile Include="Assets\scripts\Mob.cs" />
-     <Compile Include="Assets\scripts\Ai.cs" />
-     <Compile Include="Assets\scripts\Layers.cs" />
-     <Compile Include="Assets\scripts\TypeDictionary.cs" />
-     <Compile Include="Assets\scripts\PlayerAi.cs" />
+     <Compile Include="Assets\Scripts\GameHandler.cs" />
+     <Compile Include="Assets\Scripts\Layers.cs" />
+     <Compile Include="Assets\Scripts\Tile.cs" />
+     <Compile Include="Assets\Scripts\Mob.cs" />
+     <Compile Include="Assets\Scripts\PlayerAi.cs" />
+     <Compile Include="Assets\Scripts\TileHandler.cs" />
+     <Compile Include="Assets\Scripts\TypeDictionary.cs" />
+     <Compile Include="Assets\Scripts\Ai.cs" />
+     <Compile Include="Assets\Tools\Map Editor.cs" />
+     <Compile Include="Assets\Tools\MapFile.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.24f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

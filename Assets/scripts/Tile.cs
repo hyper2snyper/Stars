@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Tile : MonoBehaviour
 {
     public string object_name;
@@ -14,7 +15,7 @@ public class Tile : MonoBehaviour
 
 public static class Tile_Creator
 {
-    public Tile Spawn(Tile type, int x_loc, int y_loc, float sprite_distance, Transform parent)
+    public static Tile Spawn(Tile type, int x_loc, int y_loc, float sprite_distance, Transform parent)
     {
         Tile tile = Tile.Instantiate(type);
         tile.x = x_loc;

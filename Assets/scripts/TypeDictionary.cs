@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/TypeDictionary", order = 1)]
 public class TypeDictionary : ScriptableObject
 {
 
@@ -10,28 +11,11 @@ public class TypeDictionary : ScriptableObject
 
     public Tile getTile(int key)
     {
-        if(key <= tiles.key)
-            return tiles[key];
-        Debug.LogError($"Tile with key: {key} could not be found.");
-        return null;
+        return tiles[key];
     } 
 
     public Mob getMob(int key)
     {
-        if(key <= mobs.len)
-            return mobs[key];
-        Debug.LogError($"Mob with key: {key} could not be found.");
-        return null;
+        return mobs[key];
     } 
-}
-
-public enum Tiles : int
-{
-    wall = 0,
-    floor,
-}
-
-public enum Mobs : int
-{
-    human = 0,
 }
