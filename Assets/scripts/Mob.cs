@@ -11,8 +11,32 @@ public class Mob : MonoBehaviour
 
     public Ai brain;
 
-    public int x;
-    public int y;
+    public int x
+    {
+        get { return loc?.x; }
+    }
+    public int y
+    {
+        get { return loc?.y; }
+    }
+
+    public void forceMove(Tile new_location)
+    {
+        loc.contents -= this;
+        loc = new_location;
+        Transform parent_transform = loc.GetComponent<Transform>();
+        GetComponent<Transform>().parent = parent_transform;
+        GetComponent<Transform>().position = new Vector3(parent_transform.position.x, parent_transform.position.y, (int) Layers.Mob_layer);
+        loc.contents += this;
+    }
+
+    public void takeStep(Tile new_location)
+    {
+        if(!loc.can_exit(this)) return;
+        if(!new_location.can_enter(this)) return;
+        forceMove(new_location);
+        loc.on_enter(this);
+    }
 
 }
 
@@ -21,16 +45,7 @@ public static class Mob_Creator
     public static Mob Spawn(Mob type, Tile spawn_location, Ai brain)
     {
         Mob mob = Mob.Instantiate(type);
-        mob.loc = spawn_location;
-        Tile loc = mob.loc;
-        mob.x = loc.x;
-        mob.y = loc.y;
-        Transform parent_transform = loc.GetComponent<Transform>();
-        mob.GetComponent<Transform>().parent = parent_transform;
-        mob.GetComponent<Transform>().position = new Vector3(parent_transform.position.x, parent_transform.position.y, (int) Layers.Mob_layer);
-        mob.name = $"{mob.object_name} ({loc})";
-        loc.contents.Add(mob);
-
+        mob.forceMove(spawn_location);
         mob.brain = brain;
         mob.brain?.set_up(mob);
 

@@ -11,6 +11,25 @@ public class Tile : MonoBehaviour
 
     public List<object> contents;
 
+    public bool passable = true;
+
+    public virtual bool can_enter(Mob enterer)
+    {
+        return passable;
+    }
+
+    public virtual bool can_exit(Mob exiter)
+    {
+        return true;
+    }
+
+    public virtual void on_enter(Mob enterer)
+    {
+
+    }
+
+
+
 }
 
 public static class Tile_Creator
